@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="canopy">
+  <title>Giữ mãi màu xanh Đỉnh Phượng Hoàng — Tuyên truyền du lịch có ý thức</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,500&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+
+      /* 1. Canopy earth-and-meadow strata adapted to grass green, sky blue & sunlit gold */
+      --background: #f8faf4;
+      --surface-container-low: #eff4e8;
+      --surface-container: #e3ecda;
+      --surface-container-high: #d5e3c9;
+      --surface-sky: #e6f2fa;
+      --surface-sky-deep: #d2e8f7;
+
+      /* Ink */
+      --on-surface: #1d2b1f;
+      --on-surface-variant: #425445;
+      --on-sky: #0e4d73;
+
+      /* Lines */
+      --outline: #6c7a6e;
+      --outline-variant: #c4d1bb;
+
+      /* Accents: Grass Green, Sky Blue, Golden Sunlight */
+      --primary: #2b6e3c;
+      --on-primary: #ffffff;
+      --primary-container: #d7f0dd;
+      --on-primary-container: #184725;
+
+      --secondary: #3b6175;
+      --sky-accent: #1d75a8;
+      --on-sky-accent: #ffffff;
+
+      --tertiary: #945f00;
+      --tertiary-container: #fce8b2;
+      --on-tertiary-container: #5c3900;
+      --sun-gold: #e8a81c;
+
+      --error: #b83230;
+      --on-error: #ffffff;
+
+      /* Data series */
+      --data-1: #2b6e3c;
+      --data-2: #1d75a8;
+      --data-3: #b8760b;
+      --data-4: #4c8c5b;
+      --data-context: #b4bfa8;
+
+      /* Fonts */
+      --font-headline: 'Literata', serif;
+      --font-body: 'Nunito Sans', sans-serif;
+      --font-label: 'JetBrains Mono', 'Nunito Sans', monospace;
+
+      /* Shape */
+      --rounded: 0.625rem;
+      --rounded-lg: 1rem;
+      --rounded-full: 9999px;
+
+      /* Canopy effects & tokens */
+      --shadow-soft: 0 4px 20px rgb(29 43 31 / 0.06);
+      --shadow-soft-hover: 0 8px 28px rgb(29 43 31 / 0.11);
+      --border-soft: 1px solid rgb(196 209 187 / 0.72);
+      --border-sky: 1px solid rgb(29 117 168 / 0.25);
+      --focus-glow: 0 0 0 4px rgb(43 110 60 / 0.2);
+      --scrim-dark: linear-gradient(180deg, rgb(18 32 22 / 0.06) 0%, rgb(18 32 22 / 0.72) 100%);
+      --badge-glass: rgb(248 250 244 / 0.92);
+
+      /* Semantic */
+      --positive: #2b6e3c;
+      --warning: #945f00;
+      --focus: #2b6e3c;
+
+      /* Type scale (Narrative) */
+      --display-size: clamp(2.15rem, 1.35rem + 3.4vw, 3.6rem);
+      --headline-size: clamp(1.65rem, 1.2rem + 1.8vw, 2.35rem);
+      --subhead-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+      --body-size: clamp(1rem, 0.96rem + 0.22vw, 1.125rem);
+      --label-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.8125rem);
+
+      /* Spacing scale (4pt base) */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 6rem;
+
+      /* Motion */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    /* Base reset */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.64;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+    img { display: block; max-width: 100%; height: auto; }
+    button, input, select, textarea { font-family: inherit; }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 2px;
+      box-shadow: var(--focus-glow);
+    }
+
+    .page-grid {
+      display: grid;
+      gap: var(--space-2xl);
+      padding: var(--space-xl) var(--space-lg) var(--space-3xl);
+      max-width: 1120px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .page-grid * { min-width: 0; }
+
+    /* Typography */
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: var(--label-size);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tertiary);
+      margin: 0 0 var(--space-sm);
+    }
+    .kicker-dot {
+      width: var(--space-sm);
+      height: var(--space-sm);
+      border-radius: var(--rounded-full);
+      background-color: var(--sun-gold);
+      flex-shrink: 0;
+    }
+    h1 {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--display-size);
+      line-height: 1.12;
+      letter-spacing: -0.015em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-md);
+      max-width: 22ch;
+    }
+    h2 {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--headline-size);
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+    h3 {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: var(--subhead-size);
+      line-height: 1.28;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+    p {
+      margin: 0 0 var(--space-md);
+      max-width: 65ch;
+      color: var(--on-surface);
+    }
+    p:last-child { margin-bottom: 0; }
+
+    .lead-copy {
+      font-size: var(--subhead-size);
+      line-height: 1.55;
+      color: var(--on-surface-variant);
+      max-width: 62ch;
+      margin-bottom: var(--space-lg);
+    }
+
+    .mono-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--secondary);
+    }
+
+    /* Sunlit Sky + Meadow Hero */
+    .hero-block {
+      display: grid;
+      gap: var(--space-lg);
+      padding: var(--space-xl);
+      border-radius: var(--rounded-lg);
+      background: linear-gradient(155deg, var(--surface-sky) 0%, var(--background) 48%, var(--surface-container-low) 100%);
+      border: var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    .sun-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+    }
+
+    .jump-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .jump-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: 0;
+      background-color: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 700;
+      font-size: var(--label-size);
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .jump-btn:hover {
+      background-color: var(--surface-container-high);
+      transform: translateY(-1px);
+    }
+    .jump-btn.is-primary {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .jump-btn.is-primary:hover {
+      background-color: var(--on-primary-container);
+    }
+
+    /* Photo Frames */
+    .photo-figure {
+      margin: 0;
+      border-radius: var(--rounded-lg);
+      overflow: hidden;
+      background-color: var(--surface-container);
+      position: relative;
+      box-shadow: var(--shadow-soft);
+    }
+    .photo-frame-hero {
+      aspect-ratio: 800 / 406;
+      width: 100%;
+    }
+    .photo-frame-2 {
+      aspect-ratio: 800 / 411;
+      width: 100%;
+    }
+    .photo-frame-3 {
+      aspect-ratio: 800 / 361;
+      width: 100%;
+    }
+    .photo-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-caption {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      background-color: var(--surface-container-low);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+    }
+    .photo-tag {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--on-sky);
+      background-color: var(--surface-sky);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+    }
+
+    /* Key Facts Strip */
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(210px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .fact-tile {
+      background-color: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .fact-tile.is-sky {
+      background-color: var(--surface-sky);
+    }
+    .fact-value {
+      font-family: var(--font-headline);
+      font-weight: 600;
+      font-size: clamp(1.35rem, 1.15rem + 0.8vw, 1.85rem);
+      line-height: 1.2;
+      font-variant-numeric: lining-nums tabular-nums;
+      color: var(--on-surface);
+    }
+    .fact-tile.is-sky .fact-value {
+      color: var(--on-sky);
+    }
+    .fact-note {
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+    }
+
+    /* Section Layout */
+    .section-block {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .section-head {
+      display: grid;
+      gap: var(--space-xs);
+      border-bottom: 1px solid var(--outline-variant);
+      padding-bottom: var(--space-md);
+    }
+
+    /* Canopy 12-Month Phenology Strip */
+    .phenology-panel {
+      background-color: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+      box-shadow: var(--shadow-soft);
+    }
+    .season-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .season-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      align-items: center;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: var(--label-size);
+      color: var(--on-surface-variant);
+    }
+    .legend-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .swatch-green { background-color: var(--primary); }
+    .swatch-gold { background-color: var(--tertiary-container); border: 1px solid var(--sun-gold); }
+
+    .season-cells {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: var(--space-xs);
+      width: 100%;
+    }
+    .season-cell {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--rounded);
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform var(--dur-micro) var(--ease-out), box-shadow var(--dur-micro) var(--ease-out);
+    }
+    .season-cell:hover {
+      transform: translateY(-2px);
+    }
+    .season-cell.is-green {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .season-cell.is-burn {
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+    }
+    .season-cell.is-active {
+      border-color: var(--on-surface);
+      box-shadow: var(--shadow-soft);
+    }
+    .season-cell.is-green.is-active {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .season-cell.is-burn.is-active {
+      background-color: var(--tertiary);
+      color: var(--on-primary);
+    }
+
+    .season-detail {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      gap: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      background-color: var(--background);
+      border: var(--border-soft);
+      align-items: center;
+    }
+    .season-badge-box {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      width: fit-content;
+      margin-bottom: var(--space-xs);
+    }
+    .season-badge-box.is-green {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .season-badge-box.is-burn {
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+    }
+    .season-tip {
+      background-color: var(--surface-sky);
+      color: var(--on-sky);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      font-size: 0.95rem;
+    }
+
+    /* Two-column editorial + gallery */
+    .split-editorial {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .photo-stack {
+      display: grid;
+      gap: var(--space-lg);
+    }
+    .prose-card {
+      background-color: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .reality-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: var(--space-md);
+    }
+    .reality-item {
+      display: grid;
+      gap: var(--space-xs);
+      padding-left: var(--space-md);
+      border-left: 3px solid var(--sky-accent);
+    }
+    .reality-item.is-warn {
+      border-left-color: var(--sun-gold);
+    }
+    .reality-item strong {
+      color: var(--on-surface);
+      font-weight: 700;
+    }
+    .reality-item span {
+      color: var(--on-surface-variant);
+      font-size: 0.96rem;
+    }
+
+    /* Rules Grid (Canopy cards, 1 single .is-leaf-highlight) */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-lg);
+    }
+    .rule-card {
+      background-color: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      display: grid;
+      align-content: start;
+      gap: var(--space-sm);
+    }
+    .rule-card.is-leaf-highlight {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .rule-card.is-leaf-highlight h3,
+    .rule-card.is-leaf-highlight p {
+      color: var(--on-primary-container);
+    }
+    .rule-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+    }
+    .rule-num {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      background-color: var(--surface-container-high);
+      color: var(--on-surface);
+    }
+    .rule-card.is-leaf-highlight .rule-num {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .rule-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--rounded);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--background);
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    .rule-icon.is-fire { color: var(--tertiary); background-color: var(--tertiary-container); }
+    .rule-icon.is-trail { color: var(--sky-accent); background-color: var(--surface-sky); }
+
+    /* Interactive Checklist (Pledge & Readiness) */
+    .checklist-card {
+      background-color: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: var(--space-md);
+    }
+    .checklist-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .progress-wrap {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .progress-track {
+      height: 12px;
+      border-radius: var(--rounded-full);
+      background-color: var(--surface-container-high);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: var(--rounded-full);
+      background: linear-gradient(90deg, var(--sky-accent) 0%, var(--primary) 100%);
+      transition: width var(--dur-long) var(--ease-out);
+    }
+    .checklist-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .check-label {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--rounded);
+      background-color: var(--background);
+      border: var(--border-soft);
+      cursor: pointer;
+      min-height: 44px;
+      transition: background-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out);
+    }
+    .check-label:hover {
+      box-shadow: var(--shadow-soft);
+    }
+    .check-label.is-checked {
+      background-color: var(--primary-container);
+      border-color: var(--primary);
+    }
+    .check-label input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      margin: 2px 0 0;
+      accent-color: var(--primary);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .check-text {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .check-text strong {
+      font-size: 0.98rem;
+      color: var(--on-surface);
+    }
+    .check-text span {
+      font-size: 0.9rem;
+      color: var(--on-surface-variant);
+    }
+    .checklist-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+    .status-banner {
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      background-color: var(--surface-sky);
+      color: var(--on-sky);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .status-banner.is-complete {
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* 10 Slogans Section */
+    .slogan-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      background-color: var(--surface-container-low);
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--rounded-lg);
+    }
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .filter-btn {
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: 0;
+      background-color: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 700;
+      font-size: var(--label-size);
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
+    }
+    .filter-btn:hover {
+      background-color: var(--surface-container-high);
+    }
+    .filter-btn.is-active {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+    .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: 0;
+      background-color: var(--primary);
+      color: var(--on-primary);
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out), transform var(--dur-short) var(--ease-out);
+    }
+    .btn-primary:hover {
+      background-color: var(--on-primary-container);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--rounded);
+      border: 0;
+      background-color: var(--surface-container);
+      color: var(--on-surface);
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: background-color var(--dur-short) var(--ease-out);
+    }
+    .btn-secondary:hover {
+      background-color: var(--surface-container-high);
+    }
+
+    .copy-feedback {
+      min-height: 1.5rem;
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .slogans-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    .slogan-list {
+      display: grid;
+      gap: var(--space-sm);
+    }
+    .slogan-row {
+      background-color: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-md) var(--space-lg);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: var(--space-md);
+      align-items: center;
+      border: 2px solid transparent;
+      transition: background-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out);
+    }
+    .slogan-row:hover {
+      box-shadow: var(--shadow-soft);
+    }
+    .slogan-row.is-selected {
+      background-color: var(--background);
+      border-color: var(--sky-accent);
+      box-shadow: var(--shadow-soft);
+    }
+    .slogan-index {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--on-tertiary-container);
+      background-color: var(--tertiary-container);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+    }
+    .slogan-body {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .slogan-quote {
+      font-family: var(--font-headline);
+      font-weight: 500;
+      font-size: 1.04rem;
+      line-height: 1.42;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .slogan-cat {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--secondary);
+    }
+    .slogan-actions {
+      display: flex;
+      gap: var(--space-xs);
+    }
+    .icon-btn {
+      min-width: 44px;
+      min-height: 44px;
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--rounded);
+      border: 0;
+      background-color: var(--surface-container);
+      color: var(--on-surface);
+      font-size: var(--label-size);
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .icon-btn:hover {
+      background-color: var(--surface-container-high);
+    }
+    .icon-btn.is-fav {
+      background-color: var(--tertiary-container);
+      color: var(--on-tertiary-container);
+    }
+    .icon-btn.is-copied {
+      background-color: var(--primary);
+      color: var(--on-primary);
+    }
+
+    /* Shareable Check-in Card Preview */
+    .preview-card-wrap {
+      background-color: var(--surface-container-low);
+      border-radius: var(--rounded-lg);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: var(--space-md);
+      position: sticky;
+      top: var(--space-lg);
+    }
+    .poster-frame {
+      position: relative;
+      border-radius: var(--rounded-lg);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      background-color: var(--surface-container);
+    }
+    .poster-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .poster-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--scrim-dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: var(--space-lg);
+      color: var(--on-primary);
+    }
+    .poster-badge {
+      align-self: flex-start;
+      background-color: var(--badge-glass);
+      color: var(--on-primary-container);
+      padding: var(--space-xs) var(--space-md);
+      border-radius: var(--rounded-full);
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 700;
+    }
+    .poster-quote {
+      font-family: var(--font-headline);
+      font-size: clamp(1.1rem, 1rem + 0.45vw, 1.38rem);
+      line-height: 1.35;
+      color: var(--on-primary);
+      margin: 0;
+    }
+    .poster-meta {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      color: var(--tertiary-container);
+      margin-top: var(--space-xs);
+    }
+
+    .photo-picker-group {
+      display: grid;
+      gap: var(--space-xs);
+    }
+    .photo-picker-label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      font-weight: 600;
+      color: var(--on-surface-variant);
+    }
+    .photo-picker-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-sm);
+    }
+    .photo-thumb-btn {
+      min-height: 44px;
+      padding: var(--space-xs);
+      border-radius: var(--rounded);
+      border: 2px solid transparent;
+      background-color: var(--background);
+      cursor: pointer;
+      display: grid;
+      gap: var(--space-xs);
+      text-align: center;
+      font-size: var(--label-size);
+      font-weight: 700;
+      color: var(--on-surface-variant);
+    }
+    .photo-thumb-btn.is-active {
+      border-color: var(--primary);
+      background-color: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* Footer */
+    .source-footer {
+      border-top: 1px solid var(--outline-variant);
+      padding-top: var(--space-lg);
+      display: grid;
+      gap: var(--space-xs);
+      color: var(--on-surface-variant);
+      font-size: var(--label-size);
+    }
+
+    /* Container queries for card flexibility */
+    .card-wrapper { container-type: inline-size; }
+    @container (max-width: 440px) {
+      .slogan-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Scroll reveal */
+    .reveal-section {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity var(--dur-long) var(--ease-out), transform var(--dur-long) var(--ease-out);
+    }
+    .reveal-section.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 860px) {
+      .split-editorial,
+      .slogans-layout,
+      .season-detail {
+        grid-template-columns: 1fr;
+      }
+      .preview-card-wrap {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-grid {
+        grid-template-columns: 1fr;
+        padding: var(--space-md) var(--space-sm) var(--space-2xl);
+        gap: var(--space-xl);
+      }
+      .hero-block {
+        padding: var(--space-lg);
+      }
+      .season-cells {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+      .slogan-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal-section {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-grid">
+    <!-- HERO SECTION -->
+    <header class="hero-block">
+      <div class="hero-top">
+        <p class="kicker">
+          <span class="kicker-dot" aria-hidden="true"></span>
+          Bắc Sơn · Uông Bí · Quảng Ninh
+        </p>
+        <div class="sun-pill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          Núi Ba Tầng · Cao ~500 m
+        </div>
+      </div>
+
+      <div>
+        <h1>Giữ mãi màu xanh Đỉnh Phượng Hoàng</h1>
+        <p class="lead-copy">
+          Nằm trên dãy cánh cung Yên Tử, đồi cỏ rộng thoáng ở Bắc Sơn đón nắng vàng, mây sớm và bước chân của hàng nghìn bạn trẻ săn mây, cắm trại. Khi lượng khách tăng nhanh hơn hạ tầng bảo vệ, mỗi hành động nhỏ — mang rác xuống núi, giữ an toàn lửa trại và đi đúng lối mòn — chính là cách gìn giữ vẻ đẹp nguyên sơ cho đỉnh núi.
+        </p>
+        <nav class="jump-nav" aria-label="Điều hướng nhanh các phần nội dung">
+          <button type="button" class="jump-btn is-primary" onclick="scrollToSection('section-rules')">Quy tắc cắm trại văn minh</button>
+          <button type="button" class="jump-btn" onclick="scrollToSection('section-seasons')">Chu kỳ mùa cỏ &amp; hiện trạng</button>
+          <button type="button" class="jump-btn" onclick="scrollToSection('section-slogans')">Bộ 10 khẩu hiệu hành động xanh</button>
+        </nav>
+      </div>
+
+      <figure class="photo-figure">
+        <div class="photo-frame-hero">
+          <img src="[SOURCE_IMAGE_1]" alt="Toàn cảnh đồi cỏ Đỉnh Phượng Hoàng dưới bầu trời xanh và nắng vàng tại Uông Bí, Quảng Ninh">
+        </div>
+        <figcaption class="photo-caption">
+          <span>Ảnh chụp thực tế đồi cỏ Đỉnh Phượng Hoàng — không gian thoáng rộng ít cây gỗ lớn, hòa quyện sắc xanh cỏ non, trời cao và nắng sớm.</span>
+          <span class="photo-tag">FB_IMG_1795590772300.jpg</span>
+        </figcaption>
+      </figure>
+
+      <div class="facts-grid">
+        <div class="fact-tile">
+          <span class="mono-label">Độ cao &amp; địa danh</span>
+          <span class="fact-value">~500 m</span>
+          <span class="fact-note">Gọi là núi Ba Tầng, thuộc Bắc Sơn, Uông Bí</span>
+        </div>
+        <div class="fact-tile is-sky">
+          <span class="mono-label">Đặc trưng sinh cảnh</span>
+          <span class="fact-value">Đồi cỏ &amp; thông</span>
+          <span class="fact-note">Thảm cỏ rộng, ít cây gỗ lớn, có mây sớm</span>
+        </div>
+        <div class="fact-tile">
+          <span class="mono-label">Mùa cỏ xanh tươi</span>
+          <span class="fact-value">Xuân – Hè</span>
+          <span class="fact-note">Cỏ non phủ xanh triền đồi, dễ sạt nếu giẫm nát</span>
+        </div>
+        <div class="fact-tile">
+          <span class="mono-label">Mùa cỏ cháy</span>
+          <span class="fact-value">Tháng 10 – 1</span>
+          <span class="fact-note">Sắc vàng nâu đặc trưng, gió lớn dễ cháy lan</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- SECTION 1: LANDSCAPE CYCLES & TOURISM REALITY -->
+    <section id="section-seasons" class="section-block reveal-section">
+      <div class="section-head">
+        <p class="kicker">Hiện trạng cảnh quan &amp; du lịch</p>
+        <h2>Hai sắc thái theo mùa và áp lực hạ tầng trên sườn đồi đất dốc</h2>
+      </div>
+
+      <!-- Canopy Phenology 12-Month Strip -->
+      <div class="phenology-panel" aria-label="Chu kỳ 12 tháng cảnh sắc và rủi ro môi trường tại Đỉnh Phượng Hoàng">
+        <div class="season-strip">
+          <div>
+            <h3>Lịch biến chuyển thảm cỏ quanh năm</h3>
+            <p class="mono-label">Chọn từng tháng để xem cảnh sắc và lưu ý bảo vệ môi trường tương ứng</p>
+          </div>
+          <div class="season-legend">
+            <span class="legend-item"><span class="legend-swatch swatch-green" aria-hidden="true"></span> Xuân – Hè: Cỏ xanh tươi</span>
+            <span class="legend-item"><span class="legend-swatch swatch-gold" aria-hidden="true"></span> Tháng 10 – 1: Mùa cỏ cháy</span>
+          </div>
+        </div>
+
+        <div class="season-cells" id="season-cells" role="group" aria-label="Chọn tháng từ Tháng 1 đến Tháng 12"></div>
+
+        <div class="season-detail" id="season-detail" aria-live="polite">
+          <div>
+            <span class="season-badge-box is-burn" id="season-badge">Tháng 11 · Mùa cỏ cháy</span>
+            <h3 id="season-title">Thảm cỏ chuyển vàng nâu dưới gió hanh</h3>
+            <p id="season-desc">Khoảng tháng 10 đến tháng 1 năm sau, thảm cỏ trên Đỉnh Phượng Hoàng bước vào mùa cỏ cháy với sắc vàng nâu nổi bật. Gió đồi trống thổi mạnh khiến cỏ khô dễ bắt lửa.</p>
+          </div>
+          <div class="season-tip">
+            <strong id="season-tip-title">Khuyến cáo trọng tâm:</strong>
+            <p id="season-tip-body">Tuyệt đối không đốt lửa trại ngoài trời hay dùng bếp nướng khi cỏ khô hanh và gió lớn để tránh cháy lan thảm cỏ tự nhiên.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editorial Split with Real Photos 2 & 3 -->
+      <div class="split-editorial">
+        <div class="photo-stack">
+          <figure class="photo-figure">
+            <div class="photo-frame-2">
+              <img src="[SOURCE_IMAGE_2]" alt="Góc nhìn triền đồi Đỉnh Phượng Hoàng với đường mòn và cảnh quan đồi cỏ tự nhiên">
+            </div>
+            <figcaption class="photo-caption">
+              <span>Triền cỏ mở rộng và lối mòn tự nhiên — nhạy cảm trước tình trạng đi xe tự phát lên thảm cỏ.</span>
+              <span class="photo-tag">FB_IMG_1795590779189.jpg</span>
+            </figcaption>
+          </figure>
+
+          <figure class="photo-figure">
+            <div class="photo-frame-3">
+              <img src="[SOURCE_IMAGE_3]" alt="Khung cảnh Đỉnh Phượng Hoàng nhìn ra cánh cung Yên Tử dưới nắng và mây trời">
+            </div>
+            <figcaption class="photo-caption">
+              <span>Cảnh quan cánh cung Yên Tử nhìn từ đỉnh núi Ba Tầng vào ngày nắng trong.</span>
+              <span class="photo-tag">FB_IMG_1795590786909.jpg</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="prose-card">
+          <h3>Thực trạng du lịch: Sức hút tăng nhanh, hạ tầng còn hạn chế</h3>
+          <p>
+            Đỉnh Phượng Hoàng hiện thu hút rất đông du khách đến trekking, săn mây sớm, cắm trại qua đêm và trải nghiệm glamping. Tuy nhiên, đặc thù núi đất cao ~500 m đặt ra nhiều thách thức trực tiếp cho cảnh quan tự nhiên:
+          </p>
+          <ul class="reality-list">
+            <li class="reality-item">
+              <strong>Địa hình đường đất dốc, dễ trơn trượt</strong>
+              <span>Lối lên núi chủ yếu là đường đất dốc, trở nên trơn trượt khi gặp mưa. Việc chạy xe hoặc dẫm đạp ra ngoài lối mòn gây xói mòn sườn dốc và hư hại lớp cỏ non.</span>
+            </li>
+            <li class="reality-item">
+              <strong>Hạ tầng thu gom rác và vệ sinh còn mỏng</strong>
+              <span>Dù đã xuất hiện dịch vụ lều trại, xe trung chuyển cùng một số điểm thu gom rác và nhà vệ sinh lưu động, hệ thống hạ tầng nhìn chung vẫn còn hạn chế so với lượng khách đổ về cuối tuần.</span>
+            </li>
+            <li class="reality-item is-warn">
+              <strong>Nguy cơ rác thải nhựa &amp; cháy thảm cỏ</strong>
+              <span>Vỏ lon, túi ni-lông, đồ nhựa dùng một lần và tàn lửa bếp nướng nếu bị bỏ lại sẽ trực tiếp biến đồi cỏ sạch đẹp thành bãi rác hoặc gây cháy lan diện rộng.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: 4 ECO-CAMPING RULES & INTERACTIVE CHECKLIST -->
+    <section id="section-rules" class="section-block reveal-section">
+      <div class="section-head">
+        <p class="kicker">Bộ quy tắc cắm trại văn minh</p>
+        <h2>Bốn nguyên tắc bảo vệ môi trường Đỉnh Phượng Hoàng</h2>
+      </div>
+
+      <div class="rules-grid">
+        <article class="rule-card is-leaf-highlight">
+          <div class="rule-head">
+            <span class="rule-num">QUY TẮC 01</span>
+            <span class="rule-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path>
+              </svg>
+            </span>
+          </div>
+          <h3>Mang rác xuống núi</h3>
+          <p>
+            Tự thu gom toàn bộ vỏ lon, túi ni-lông, đồ nhựa phát sinh trong chuyến đi và mang về điểm tập kết dưới chân núi. Tuyệt đối không vứt bừa bãi hay chôn lấp rác trên thảm cỏ.
+          </p>
+        </article>
+
+        <article class="rule-card">
+          <div class="rule-head">
+            <span class="rule-num">QUY TẮC 02</span>
+            <span class="rule-icon is-fire" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2c.5 4-2 6-2 9a4 4 0 0 0 8 0c0-2.5-1.5-4.5-2-6-1 1.5-2 2-2 2s.5-3-2-5z"></path>
+                <path d="M6 14a6 6 0 0 0 12 0"></path>
+              </svg>
+            </span>
+          </div>
+          <h3>An toàn lửa trại &amp; bếp nướng</h3>
+          <p>
+            Không đốt lửa ngoài trời khi gió lớn hoặc vào mùa cỏ khô hanh (tháng 10 – tháng 1) để phòng tránh cháy lan và bảo vệ nguyên vẹn thảm cỏ tự nhiên trên đỉnh đồi.
+          </p>
+        </article>
+
+        <article class="rule-card">
+          <div class="rule-head">
+            <span class="rule-num">QUY TẮC 03</span>
+            <span class="rule-icon is-trail" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19l6-14M14 5l6 14M9 14h6M10 9h4"></path>
+              </svg>
+            </span>
+          </div>
+          <h3>Đi đúng lối mòn</h3>
+          <p>
+            Hạn chế lái xe hoặc đi lại tự phát đè lên thảm cỏ non và các vùng dốc dễ sạt lở nhằm giữ nguyên hệ thực vật và tránh làm biến dạng mặt đất đồi núi.
+          </p>
+        </article>
+
+        <article class="rule-card">
+          <div class="rule-head">
+            <span class="rule-num">QUY TẮC 04</span>
+            <span class="rule-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"></path>
+                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path>
+              </svg>
+            </span>
+          </div>
+          <h3>Lan tỏa thông điệp xanh</h3>
+          <p>
+            Mỗi nhóm khách chủ động nhắc nhở nhau giữ gìn vệ sinh chung và ưu tiên lựa chọn các dịch vụ cắm trại, glamping có cam kết thu gom và xử lý rác thải bài bản.
+          </p>
+        </article>
+      </div>
+
+      <!-- Interactive Checklist -->
+      <div class="checklist-card" id="eco-checklist-card">
+        <div class="checklist-header">
+          <div>
+            <h3>Kiểm tra hành trang "Check-in Xanh" trước giờ xuất phát</h3>
+            <p class="mono-label">Tích chọn các hạng mục cam kết — tiến độ được lưu tự động cho chuyến đi của bạn</p>
+          </div>
+          <span class="mono-label" id="checklist-count">0 / 4 cam kết sẵn sàng</span>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="checklist-progressbar">
+            <div class="progress-fill" id="checklist-fill"></div>
+          </div>
+        </div>
+
+        <div class="checklist-items" id="checklist-items">
+          <label class="check-label" for="chk-trash">
+            <input type="checkbox" id="chk-trash" onchange="toggleChecklistItem('trash', this.checked)">
+            <span class="check-text">
+              <strong>Chuẩn bị túi gom rác cá nhân</strong>
+              <span>Cam kết thu dọn toàn bộ vỏ lon, túi ni-lông, đồ nhựa mang về điểm tập kết dưới chân núi.</span>
+            </span>
+          </label>
+
+          <label class="check-label" for="chk-fire">
+            <input type="checkbox" id="chk-fire" onchange="toggleChecklistItem('fire', this.checked)">
+            <span class="check-text">
+              <strong>Kiểm tra an toàn lửa &amp; thời tiết gió</strong>
+              <span>Không đốt lửa trần khi gió mạnh hoặc cỏ khô; ưu tiên đồ ăn chuẩn bị sẵn mùa cỏ cháy.</span>
+            </span>
+          </label>
+
+          <label class="check-label" for="chk-trail">
+            <input type="checkbox" id="chk-trail" onchange="toggleChecklistItem('trail', this.checked)">
+            <span class="check-text">
+              <strong>Giữ bước chân &amp; bánh xe trên lối mòn</strong>
+              <span>Không chạy xe hoặc giẫm đạp tự phát lên cỏ non, đặc biệt ở các đoạn dốc trơn dễ sạt lở.</span>
+            </span>
+          </label>
+
+          <label class="check-label" for="chk-service">
+            <input type="checkbox" id="chk-service" onchange="toggleChecklistItem('service', this.checked)">
+            <span class="check-text">
+              <strong>Chọn dịch vụ cắm trại có xử lý rác &amp; nhắc nhở nhóm</strong>
+              <span>Đồng thuận quy tắc vệ sinh chung trong cả nhóm trước khi dựng lều qua đêm.</span>
+            </span>
+          </label>
+        </div>
+
+        <div class="checklist-footer">
+          <div class="status-banner" id="checklist-status" aria-live="polite">
+            Hãy đánh dấu 4 cam kết trên để xác nhận sẵn sàng cho chuyến trekking không dấu vết rác thải.
+          </div>
+          <button type="button" class="btn-secondary" id="reset-checklist-btn" onclick="resetChecklist(this)">Đặt lại cam kết</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: 10 GREEN ACTION SLOGANS -->
+    <section id="section-slogans" class="section-block reveal-section">
+      <div class="section-head">
+        <p class="kicker">Tuyên truyền Check-in có ý thức</p>
+        <h2>Bộ 10 khẩu hiệu hành động xanh Đỉnh Phượng Hoàng</h2>
+      </div>
+
+      <div class="slogan-toolbar">
+        <div class="filter-group" role="group" aria-label="Lọc khẩu hiệu theo chủ đề">
+          <button type="button" class="filter-btn is-active" data-filter="all" onclick="setSloganFilter('all', this)">Tất cả (10)</button>
+          <button type="button" class="filter-btn" data-filter="trash" onclick="setSloganFilter('trash', this)">Không rác thải</button>
+          <button type="button" class="filter-btn" data-filter="nature" onclick="setSloganFilter('nature', this)">Cỏ cháy &amp; Lối mòn</button>
+          <button type="button" class="filter-btn" data-filter="checkin" onclick="setSloganFilter('checkin', this)">Check-in văn minh</button>
+        </div>
+
+        <div class="action-group">
+          <button type="button" class="btn-primary" onclick="copyAllSlogans()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            Sao chép trọn bộ 10 khẩu hiệu
+          </button>
+          <button type="button" class="btn-secondary" onclick="downloadSlogansTxt()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
+            </svg>
+            Tải về (.txt)
+          </button>
+        </div>
+      </div>
+
+      <div class="copy-feedback" id="copy-feedback" aria-live="polite"></div>
+
+      <div class="slogans-layout">
+        <div class="slogan-list card-wrapper" id="slogan-list"></div>
+
+        <!-- Interactive Preview Card -->
+        <aside class="preview-card-wrap" aria-label="Xem trước thẻ thông điệp check-in">
+          <div>
+            <h3>Thẻ thông điệp Check-in Xanh</h3>
+            <p class="mono-label">Chọn một khẩu hiệu bên trái và ảnh nền thực tế để xem trước mẫu chia sẻ</p>
+          </div>
+
+          <div class="poster-frame">
+            <img id="poster-img" src="[SOURCE_IMAGE_1]" alt="Ảnh nền Đỉnh Phượng Hoàng cho thẻ khẩu hiệu tuyên truyền">
+            <div class="poster-overlay">
+              <span class="poster-badge" id="poster-badge">Khẩu hiệu #01 · Check-in văn minh</span>
+              <div>
+                <p class="poster-quote" id="poster-quote">Đến với Phượng Hoàng: Chỉ để lại dấu chân, chỉ mang về những bức ảnh đẹp.</p>
+                <div class="poster-meta">Đỉnh Phượng Hoàng · Bắc Sơn, Uông Bí, Quảng Ninh</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="photo-picker-group">
+            <span class="photo-picker-label">Chọn ảnh nền thực tế từ nguồn:</span>
+            <div class="photo-picker-row">
+              <button type="button" class="photo-thumb-btn is-active" data-photo="0" onclick="selectPosterPhoto(0, this)">Ảnh 1 · Toàn cảnh</button>
+              <button type="button" class="photo-thumb-btn" data-photo="1" onclick="selectPosterPhoto(1, this)">Ảnh 2 · Triền cỏ</button>
+              <button type="button" class="photo-thumb-btn" data-photo="2" onclick="selectPosterPhoto(2, this)">Ảnh 3 · Yên Tử</button>
+            </div>
+          </div>
+
+          <button type="button" class="btn-primary" onclick="copyCurrentPosterSlogan()">
+            Sao chép khẩu hiệu đang chọn kèm hashtag xanh
+          </button>
+        </aside>
+      </div>
+    </section>
+
+    <footer class="source-footer">
+      <strong>Nguồn tư liệu &amp; hình ảnh thực tế:</strong>
+      <span>Ghi chép thông tin &amp; hiện trạng Đỉnh Phượng Hoàng (núi Ba Tầng, khu vực Bắc Sơn, Uông Bí, Quảng Ninh) cùng 03 ảnh chụp thực tế: FB_IMG_1795590772300.jpg, FB_IMG_1795590779189.jpg và FB_IMG_1795590786909.jpg.</span>
+    </footer>
+  </main>
+
+  <api-shim></api-shim>
+  <script>
+    const SOURCE_PHOTOS = [
+      {
+        src: `[SOURCE_IMAGE_1]`,
+        alt: `Toàn cảnh đồi cỏ Đỉnh Phượng Hoàng dưới bầu trời xanh và nắng vàng`
+      },
+      {
+        src: `[SOURCE_IMAGE_2]`,
+        alt: `Triền đồi cỏ và lối mòn tự nhiên trên Đỉnh Phượng Hoàng`
+      },
+      {
+        src: `[SOURCE_IMAGE_3]`,
+        alt: `Khung cảnh Đỉnh Phượng Hoàng hướng nhìn ra cánh cung Yên Tử`
+      }
+    ];
+
+    const MONTHS_DATA = [
+      {
+        label: `T1`,
+        phase: `burn`,
+        badge: `Tháng 1 · Cuối mùa cỏ cháy`,
+        title: `Cỏ vàng nâu cuối đông, gió hanh khô vẫn hiện hữu`,
+        desc: `Tháng 1 là giai đoạn chuyển tiếp cuối của mùa cỏ cháy (từ tháng 10 đến tháng 1). Lớp cỏ khô dày trên sườn đồi tạo khung cảnh vàng nâu ấm áp nhưng rất nhạy cảm với tàn lửa.`,
+        tipTitle: `Lưu ý môi trường tháng 1:`,
+        tipBody: `Không đốt lửa ngoài trời khi gió lớn hoặc cỏ khô; thu gom sạch tàn tích picnic và mang toàn bộ rác xuống chân núi.`
+      },
+      {
+        label: `T2`,
+        phase: `green`,
+        badge: `Tháng 2 · Đầu xuân hồi sinh`,
+        title: `Mầm cỏ non bắt đầu phủ xanh triền núi Ba Tầng`,
+        desc: `Bước vào mùa xuân, lớp cỏ mới bắt đầu nảy mầm thay thế sắc vàng nâu. Độ ẩm cao cùng sương mù và mây sớm thường khiến đường đất dốc trơn trượt hơn.`,
+        tipTitle: `Lưu ý môi trường tháng 2:`,
+        tipBody: `Đi đúng lối mòn hiện có, tránh lái xe hay dẫm đạp tự phát lên lớp cỏ non mới mọc.`
+      },
+      {
+        label: `T3`,
+        phase: `green`,
+        badge: `Tháng 3 · Mùa xuân xanh`,
+        title: `Đồi cỏ xanh non xen lẫn mây sớm Yên Tử`,
+        desc: `Thảm cỏ dần phủ kín các triền đồi cao ~500 m, ít cây gỗ lớn, điểm xuyết vài tán thông và biển mây buổi sớm thu hút nhiều nhóm trekking.`,
+        tipTitle: `Lưu ý môi trường tháng 3:`,
+        tipBody: `Ưu tiên gửi xe hoặc dùng dịch vụ trung chuyển hợp lý; không xả rác nhựa tại các điểm săn mây.`
+      },
+      {
+        label: `T4`,
+        phase: `green`,
+        badge: `Tháng 4 · Mùa xuân – hè`,
+        title: `Thảm cỏ xanh mướt trải dài dưới nắng nhẹ`,
+        desc: `Khí hậu ấm dần giúp thảm cỏ xanh tươi đồng đều. Lượng khách cắm trại qua đêm và glamping tăng mạnh vào dịp cuối tuần.`,
+        tipTitle: `Lưu ý môi trường tháng 4:`,
+        tipBody: `Chọn đơn vị cắm trại có cam kết thu gom và xử lý rác thải; nhắc nhở cả nhóm giữ vệ sinh chung.`
+      },
+      {
+        label: `T5`,
+        phase: `green`,
+        badge: `Tháng 5 · Đầu hè nắng gió`,
+        title: `Sắc xanh rực rỡ dưới bầu trời cao Quảng Ninh`,
+        desc: `Nắng vàng và gió mát làm nổi bật sắc xanh của đồi cỏ và dãy cánh cung Yên Tử phía xa. Cần lưu ý những cơn mưa rào làm dốc đất trơn.`,
+        tipTitle: `Lưu ý môi trường tháng 5:`,
+        tipBody: `Mang theo túi đựng rác bền chắc, tuyệt đối không để gió thổi túi ni-lông bay dọc triền đồi.`
+      },
+      {
+        label: `T6`,
+        phase: `green`,
+        badge: `Tháng 6 · Mùa hè xanh tươi`,
+        title: `Thảm thực vật phát triển mạnh cùng mùa mưa`,
+        desc: `Đỉnh Phượng Hoàng vào hè có thảm cỏ dày xanh, nhưng mưa nhiều khiến đường đất dốc dễ bị xói lở khi có phương tiện đi tự phát.`,
+        tipTitle: `Lưu ý môi trường tháng 6:`,
+        tipBody: `Tuyệt đối tránh đi vào vùng dốc có dấu hiệu sạt lở hoặc bùn lầy để giữ ổn định mặt đất.`
+      },
+      {
+        label: `T7`,
+        phase: `green`,
+        badge: `Tháng 7 · Cao điểm mưa hè`,
+        title: `Cỏ xanh thẫm và thử thách đường đất dốc`,
+        desc: `Mưa mùa hạ giúp hệ thực vật tươi tốt nhưng khiến đường lên núi trơn trượt, đồng thời rác thải nhựa dễ bị nước mưa cuốn trôi xuống khe dốc.`,
+        tipTitle: `Lưu ý môi trường tháng 7:`,
+        tipBody: `Buộc kín túi rác cá nhân và mang về tận điểm tập kết dưới chân núi Bắc Sơn.`
+      },
+      {
+        label: `T8`,
+        phase: `green`,
+        badge: `Tháng 8 · Cuối hè chuyển thu`,
+        title: `Cỏ xanh xen nắng cuối hạ và gió dịu`,
+        desc: `Cảnh quan vẫn giữ sắc xanh chủ đạo, nhiều nhóm trekking chọn cắm trại đón bình minh trên bãi cỏ rộng thoáng.`,
+        tipTitle: `Lưu ý môi trường tháng 8:`,
+        tipBody: `Sử dụng điểm vệ sinh lưu động đúng quy định và thu dọn sạch khu vực dựng lều trước khi rời đi.`
+      },
+      {
+        label: `T9`,
+        phase: `green`,
+        badge: `Tháng 9 · Chuyển giao sang thu`,
+        title: `Thảm cỏ chuẩn bị bước vào chu kỳ ngả vàng`,
+        desc: `Cuối mùa xanh, độ ẩm giảm dần vào những ngày nắng hanh, chuẩn bị cho thời điểm cỏ chuyển màu đặc trưng từ tháng 10.`,
+        tipTitle: `Lưu ý môi trường tháng 9:`,
+        tipBody: `Bắt đầu siết chặt an toàn bếp nướng, không xả tàn than hay vỏ chai nhựa lên cỏ.`
+      },
+      {
+        label: `T10`,
+        phase: `burn`,
+        badge: `Tháng 10 · Mở đầu mùa cỏ cháy`,
+        title: `Cỏ chuyển vàng nâu hút khách săn ảnh đông đảo`,
+        desc: `Từ tháng 10, thảm cỏ bước vào "mùa cỏ cháy" nổi tiếng với tông vàng nâu rực rỡ dưới nắng chiều. Lượng khách check-in tăng đột biến.`,
+        tipTitle: `Lưu ý môi trường tháng 10:`,
+        tipBody: `Không đốt lửa ngoài trời, không vứt tàn thuốc và không dẫm nát vạt cỏ đẹp để chụp ảnh.`
+      },
+      {
+        label: `T11`,
+        phase: `burn`,
+        badge: `Tháng 11 · Đỉnh điểm mùa cỏ cháy`,
+        title: `Thảm cỏ chuyển vàng nâu dưới gió hanh`,
+        desc: `Khoảng tháng 10 đến tháng 1 năm sau, thảm cỏ trên Đỉnh Phượng Hoàng bước vào mùa cỏ cháy với sắc vàng nâu nổi bật. Gió đồi trống thổi mạnh khiến cỏ khô dễ bắt lửa.`,
+        tipTitle: `Lưu ý môi trường tháng 11:`,
+        tipBody: `Tuyệt đối không đốt lửa trại ngoài trời hay dùng bếp nướng khi cỏ khô hanh và gió lớn để tránh cháy lan thảm cỏ tự nhiên.`
+      },
+      {
+        label: `T12`,
+        phase: `burn`,
+        badge: `Tháng 12 · Đông hanh và săn mây`,
+        title: `Sắc cỏ vàng nâu kết hợp biển mây sớm mùa đông`,
+        desc: `Thời tiết lạnh khô cuối năm tạo điều kiện săn mây sớm lý tưởng trên đồi cỏ vàng, nhưng nguy cơ cháy thảm cỏ tự nhiên luôn ở mức cao.`,
+        tipTitle: `Lưu ý môi trường tháng 12:`,
+        tipBody: `Ưu tiên đồ ăn giữ nhiệt mang sẵn thay cho nấu nướng lửa trần; giữ nguyên vẻ hoang sơ cho núi rừng.`
+      }
+    ];
+
+    const SLOGANS = [
+      {
+        id: 1,
+        cat: `checkin`,
+        catLabel: `Check-in văn minh`,
+        text: `Đến với Phượng Hoàng: Chỉ để lại dấu chân, chỉ mang về những bức ảnh đẹp.`
+      },
+      {
+        id: 2,
+        cat: `trash`,
+        catLabel: `Không rác thải`,
+        text: `Đừng biến "đồi cỏ cháy" thành "bãi rác bay" – Hãy mang rác của bạn xuống núi.`
+      },
+      {
+        id: 3,
+        cat: `trash`,
+        catLabel: `Không rác thải`,
+        text: `Yêu thiên nhiên Phượng Hoàng bắt đầu từ việc không xả dù chỉ một mẩu rác nhỏ.`
+      },
+      {
+        id: 4,
+        cat: `trash`,
+        catLabel: `Không rác thải`,
+        text: `Săn mây, đón gió, giữ trọn màu xanh – Nói không với rác thải nhựa trên đỉnh núi.`
+      },
+      {
+        id: 5,
+        cat: `nature`,
+        catLabel: `Cỏ cháy & Lối mòn`,
+        text: `Cẩn trọng với từng đốm lửa nhỏ để bảo vệ thảm cỏ vàng nguyên vẹn.`
+      },
+      {
+        id: 6,
+        cat: `nature`,
+        catLabel: `Cỏ cháy & Lối mòn`,
+        text: `Đi đúng lối mòn, giữ gìn thảm cỏ, tôn trọng cảnh quan tự nhiên.`
+      },
+      {
+        id: 7,
+        cat: `trash`,
+        catLabel: `Không rác thải`,
+        text: `Một hành động nhỏ gom rác – Nghìn giá trị lớn giữ sạch Đỉnh Phượng Hoàng.`
+      },
+      {
+        id: 8,
+        cat: `checkin`,
+        catLabel: `Check-in văn minh`,
+        text: `Cắm trại văn minh: Thu dọn sạch sẽ trước khi rời đi, trả lại vẻ đẹp hoang sơ cho núi rừng.`
+      },
+      {
+        id: 9,
+        cat: `checkin`,
+        catLabel: `Check-in văn minh`,
+        text: `Bảo vệ môi trường Đỉnh Phượng Hoàng là giữ gìn điểm hẹn bình yên cho chính chúng ta.`
+      },
+      {
+        id: 10,
+        cat: `checkin`,
+        catLabel: `Check-in văn minh`,
+        text: `Check-in có ý thức – Giữ Đỉnh Phượng Hoàng mãi xanh và sạch.`
+      }
+    ];
+
+    const appState = {
+      selectedMonthIdx: 10,
+      checklist: {
+        trash: false,
+        fire: false,
+        trail: false,
+        service: false
+      },
+      sloganFilter: `all`,
+      selectedSloganId: 1,
+      selectedPosterPhoto: 0,
+      favoriteSlogans: []
+    };
+
+    async function persistState() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === `function`) {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+        } catch (err) {
+          // Ignore transient host state errors
+        }
+      }
+    }
+
+    function scrollToSection(sectionId) {
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.scrollIntoView({ behavior: `smooth`, block: `start` });
+      }
+    }
+
+    function renderSeasonCells() {
+      const container = document.getElementById(`season-cells`);
+      if (!container) return;
+      container.innerHTML = ``;
+
+      MONTHS_DATA.forEach((m, idx) => {
+        const btn = document.createElement(`button`);
+        btn.type = `button`;
+        btn.className = `season-cell ${m.phase === `burn` ? `is-burn` : `is-green`} ${idx === appState.selectedMonthIdx ? `is-active` : ``}`;
+        btn.textContent = m.label;
+        btn.setAttribute(`aria-pressed`, idx === appState.selectedMonthIdx ? `true` : `false`);
+        btn.setAttribute(`aria-label`, `Xem thông tin ${m.badge}`);
+        btn.onclick = function() {
+          selectMonth(idx);
+        };
+        container.appendChild(btn);
+      });
+    }
+
+    function selectMonth(idx) {
+      if (idx < 0 || idx >= MONTHS_DATA.length) return;
+      appState.selectedMonthIdx = idx;
+      renderSeasonCells();
+      updateSeasonDetail();
+      persistState();
+    }
+
+    function updateSeasonDetail() {
+      const data = MONTHS_DATA[appState.selectedMonthIdx];
+      if (!data) return;
+
+      const badge = document.getElementById(`season-badge`);
+      const title = document.getElementById(`season-title`);
+      const desc = document.getElementById(`season-desc`);
+      const tipTitle = document.getElementById(`season-tip-title`);
+      const tipBody = document.getElementById(`season-tip-body`);
+
+      if (badge) {
+        badge.textContent = data.badge;
+        badge.className = `season-badge-box ${data.phase === `burn` ? `is-burn` : `is-green`}`;
+      }
+      if (title) title.textContent = data.title;
+      if (desc) desc.textContent = data.desc;
+      if (tipTitle) tipTitle.textContent = data.tipTitle;
+      if (tipBody) tipBody.textContent = data.tipBody;
+    }
+
+    function toggleChecklistItem(key, isChecked) {
+      if (!(key in appState.checklist)) return;
+      appState.checklist[key] = Boolean(isChecked);
+      renderChecklistUI();
+      persistState();
+    }
+
+    function renderChecklistUI() {
+      const keys = [`trash`, `fire`, `trail`, `service`];
+      let doneCount = 0;
+
+      keys.forEach((k) => {
+        const input = document.getElementById(`chk-${k}`);
+        const checked = Boolean(appState.checklist[k]);
+        if (input) {
+          input.checked = checked;
+          const label = input.closest(`.check-label`);
+          if (label) {
+            if (checked) label.classList.add(`is-checked`);
+            else label.classList.remove(`is-checked`);
+          }
+        }
+        if (checked) doneCount += 1;
+      });
+
+      const pct = Math.round((doneCount / keys.length) * 100);
+      const countEl = document.getElementById(`checklist-count`);
+      const barEl = document.getElementById(`checklist-progressbar`);
+      const fillEl = document.getElementById(`checklist-fill`);
+      const statusEl = document.getElementById(`checklist-status`);
+
+      if (countEl) countEl.textContent = `${doneCount} / ${keys.length} cam kết sẵn sàng`;
+      if (barEl) barEl.setAttribute(`aria-valuenow`, String(pct));
+      if (fillEl) fillEl.style.width = `${pct}%`;
+
+      if (statusEl) {
+        if (doneCount === keys.length) {
+          statusEl.textContent = `Tuyệt vời! Bạn đã hoàn tất đủ 4 cam kết cắm trại văn minh & bảo vệ Đỉnh Phượng Hoàng.`;
+          statusEl.className = `status-banner is-complete`;
+        } else if (doneCount > 0) {
+          statusEl.textContent = `Đã xác nhận ${doneCount}/4 nguyên tắc. Hãy hoàn thành các mục còn lại để chuyến đi trọn vẹn xanh sạch.`;
+          statusEl.className = `status-banner`;
+        } else {
+          statusEl.textContent = `Hãy đánh dấu 4 cam kết trên để xác nhận sẵn sàng cho chuyến trekking không dấu vết rác thải.`;
+          statusEl.className = `status-banner`;
+        }
+      }
+    }
+
+    function resetChecklist(btn) {
+      if (!btn) return;
+      if (btn.dataset.armed !== `true`) {
+        btn.dataset.armed = `true`;
+        btn.textContent = `Nhấn lần nữa để đặt lại`;
+        setTimeout(() => {
+          if (btn && btn.dataset.armed === `true`) {
+            btn.dataset.armed = `false`;
+            btn.textContent = `Đặt lại cam kết`;
+          }
+        }, 3500);
+        return;
+      }
+      btn.dataset.armed = `false`;
+      btn.textContent = `Đặt lại cam kết`;
+      appState.checklist = { trash: false, fire: false, trail: false, service: false };
+      renderChecklistUI();
+      persistState();
+    }
+
+    function setSloganFilter(filter, btnEl) {
+      appState.sloganFilter = filter;
+      const buttons = document.querySelectorAll(`.filter-btn`);
+      buttons.forEach((b) => b.classList.remove(`is-active`));
+      if (btnEl) btnEl.classList.add(`is-active`);
+      else {
+        const matchBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+        if (matchBtn) matchBtn.classList.add(`is-active`);
+      }
+      renderSlogans();
+      persistState();
+    }
+
+    function selectSloganForPoster(id) {
+      appState.selectedSloganId = id;
+      renderSlogans();
+      updatePosterPreview();
+      persistState();
+    }
+
+    function toggleFavoriteSlogan(id) {
+      const idx = appState.favoriteSlogans.indexOf(id);
+      if (idx === -1) {
+        appState.favoriteSlogans.push(id);
+      } else {
+        appState.favoriteSlogans.splice(idx, 1);
+      }
+      renderSlogans();
+      persistState();
+    }
+
+    function showCopyFeedback(msg) {
+      const el = document.getElementById(`copy-feedback`);
+      if (!el) return;
+      el.textContent = msg;
+    }
+
+    function copyTextSafely(text, onDone) {
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === `function`) {
+        navigator.clipboard.writeText(text).then(
+          () => {
+            if (onDone) onDone();
+          },
+          () => {
+            fallbackCopyText(text, onDone);
+          }
+        );
+      } else {
+        fallbackCopyText(text, onDone);
+      }
+    }
+
+    function fallbackCopyText(text, onDone) {
+      const ta = document.createElement(`textarea`);
+      ta.value = text;
+      ta.setAttribute(`readonly`, ``);
+      ta.style.position = `fixed`;
+      ta.style.opacity = `0`;
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand(`copy`);
+      } catch (e) {
+        // Ignore fallback copy exception
+      }
+      document.body.removeChild(ta);
+      if (onDone) onDone();
+    }
+
+    function copySingleSlogan(id, btnEl) {
+      const item = SLOGANS.find((s) => s.id === id);
+      if (!item) return;
+      copyTextSafely(item.text, () => {
+        showCopyFeedback(`Đã sao chép khẩu hiệu #${String(item.id).padStart(2, `0`)}: "${item.text}"`);
+        if (btnEl) {
+          btnEl.classList.add(`is-copied`);
+          btnEl.textContent = `Đã chép`;
+          setTimeout(() => {
+            if (btnEl) {
+              btnEl.classList.remove(`is-copied`);
+              btnEl.textContent = `Sao chép`;
+            }
+          }, 1600);
+        }
+      });
+    }
+
+    function copyAllSlogans() {
+      const lines = SLOGANS.map((s, i) => `${i + 1}. ${s.text}`).join(`\n`);
+      const fullText = `BỘ 10 KHẨU HIỆU BẢO VỆ MÔI TRƯỜNG ĐỈNH PHƯỢNG HOÀNG (UÔNG BÍ, QUẢNG NINH)\n\n${lines}`;
+      copyTextSafely(fullText, () => {
+        showCopyFeedback(`Đã sao chép trọn bộ 10 khẩu hiệu hành động xanh vào bộ nhớ tạm.`);
+      });
+    }
+
+    function copyCurrentPosterSlogan() {
+      const item = SLOGANS.find((s) => s.id === appState.selectedSloganId) || SLOGANS[0];
+      const text = `${item.text}\n#DinhPhuongHoang #CheckInCoYThuc #MangRacXuongNui #UongBiQuangNinh`;
+      copyTextSafely(text, () => {
+        showCopyFeedback(`Đã sao chép khẩu hiệu #${String(item.id).padStart(2, `0`)} kèm hashtag xanh.`);
+      });
+    }
+
+    function downloadSlogansTxt() {
+      const lines = SLOGANS.map((s, i) => `${i + 1}. ${s.text}`).join(`\n`);
+      const content = `TUYÊN TRUYỀN BẢO VỆ MÔI TRƯỜNG ĐỈNH PHƯỢNG HOÀNG (BẮC SƠN, UÔNG BÍ, QUẢNG NINH)\n\n4 NGUYÊN TẮC CẮM TRẠI VĂN MINH:\n- Mang rác xuống núi: Tự thu gom toàn bộ vỏ lon, túi ni-lông, đồ nhựa về điểm tập kết dưới chân núi.\n- An toàn lửa trại & bếp nướng: Không đốt lửa ngoài trời khi gió lớn hoặc cỏ khô hanh.\n- Đi đúng lối mòn: Không đi lại tự phát lên thảm cỏ non hoặc vùng dốc sạt lở.\n- Lan tỏa thông điệp xanh: Nhắc nhở nhau giữ vệ sinh chung và ưu tiên dịch vụ cam kết xử lý rác.\n\n10 KHẨU HIỆU HÀNH ĐỘNG XANH:\n${lines}\n`;
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === `function`) {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: `text/plain`,
+          encoding: `UTF-8`,
+          filename: `khau-hieu-xanh-dinh-phuong-hoang.txt`
+        });
+        showCopyFeedback(`Đang tải xuống tệp văn bản khau-hieu-xanh-dinh-phuong-hoang.txt.`);
+      } else {
+        copyTextSafely(content, () => {
+          showCopyFeedback(`Đã sao chép toàn bộ nội dung tài liệu tuyên truyền.`);
+        });
+      }
+    }
+
+    function selectPosterPhoto(photoIdx, btnEl) {
+      if (photoIdx < 0 || photoIdx >= SOURCE_PHOTOS.length) return;
+      appState.selectedPosterPhoto = photoIdx;
+      const buttons = document.querySelectorAll(`.photo-thumb-btn`);
+      buttons.forEach((b) => b.classList.remove(`is-active`));
+      if (btnEl) btnEl.classList.add(`is-active`);
+      else {
+        const match = document.querySelector(`.photo-thumb-btn[data-photo="${photoIdx}"]`);
+        if (match) match.classList.add(`is-active`);
+      }
+      updatePosterPreview();
+      persistState();
+    }
+
+    function updatePosterPreview() {
+      const item = SLOGANS.find((s) => s.id === appState.selectedSloganId) || SLOGANS[0];
+      const photo = SOURCE_PHOTOS[appState.selectedPosterPhoto] || SOURCE_PHOTOS[0];
+
+      const imgEl = document.getElementById(`poster-img`);
+      const badgeEl = document.getElementById(`poster-badge`);
+      const quoteEl = document.getElementById(`poster-quote`);
+
+      if (imgEl) {
+        imgEl.src = photo.src;
+        imgEl.alt = photo.alt;
+      }
+      if (badgeEl) {
+        badgeEl.textContent = `Khẩu hiệu #${String(item.id).padStart(2, `0`)} · ${item.catLabel}`;
+      }
+      if (quoteEl) {
+        quoteEl.textContent = item.text;
+      }
+    }
+
+    function renderSlogans() {
+      const listEl = document.getElementById(`slogan-list`);
+      if (!listEl) return;
+      listEl.innerHTML = ``;
+
+      const visible = appState.sloganFilter === `all`
+        ? SLOGANS
+        : SLOGANS.filter((s) => s.cat === appState.sloganFilter);
+
+      visible.forEach((item) => {
+        const row = document.createElement(`article`);
+        const isSelected = item.id === appState.selectedSloganId;
+        const isFav = appState.favoriteSlogans.includes(item.id);
+        row.className = `slogan-row ${isSelected ? `is-selected` : ``}`;
+
+        const idxSpan = document.createElement(`span`);
+        idxSpan.className = `slogan-index`;
+        idxSpan.textContent = `#${String(item.id).padStart(2, `0`)}`;
+
+        const bodyDiv = document.createElement(`div`);
+        bodyDiv.className = `slogan-body`;
+
+        const quoteP = document.createElement(`p`);
+        quoteP.className = `slogan-quote`;
+        quoteP.textContent = item.text;
+
+        const catSpan = document.createElement(`span`);
+        catSpan.className = `slogan-cat`;
+        catSpan.textContent = item.catLabel;
+
+        bodyDiv.appendChild(quoteP);
+        bodyDiv.appendChild(catSpan);
+
+        const actionsDiv = document.createElement(`div`);
+        actionsDiv.className = `slogan-actions`;
+
+        const previewBtn = document.createElement(`button`);
+        previewBtn.type = `button`;
+        previewBtn.className = `icon-btn`;
+        previewBtn.textContent = isSelected ? `Đang xem` : `Xem thẻ`;
+        previewBtn.onclick = function() {
+          selectSloganForPoster(item.id);
+        };
+
+        const favBtn = document.createElement(`button`);
+        favBtn.type = `button`;
+        favBtn.className = `icon-btn ${isFav ? `is-fav` : ``}`;
+        favBtn.setAttribute(`aria-pressed`, isFav ? `true` : `false`);
+        favBtn.textContent = isFav ? `Đã lưu` : `Lưu`;
+        favBtn.onclick = function() {
+          toggleFavoriteSlogan(item.id);
+        };
+
+        const copyBtn = document.createElement(`button`);
+        copyBtn.type = `button`;
+        copyBtn.className = `icon-btn`;
+        copyBtn.textContent = `Sao chép`;
+        copyBtn.onclick = function() {
+          copySingleSlogan(item.id, copyBtn);
+        };
+
+        actionsDiv.appendChild(previewBtn);
+        actionsDiv.appendChild(favBtn);
+        actionsDiv.appendChild(copyBtn);
+
+        row.appendChild(idxSpan);
+        row.appendChild(bodyDiv);
+        row.appendChild(actionsDiv);
+        listEl.appendChild(row);
+      });
+    }
+
+    function setupRevealObserver() {
+      const sections = document.querySelectorAll(`.reveal-section`);
+      if (!(`IntersectionObserver` in window)) {
+        sections.forEach((s) => s.classList.add(`is-visible`));
+        return;
+      }
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(`is-visible`);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      sections.forEach((s) => observer.observe(s));
+    }
+
+    function restoreSavedState(saved) {
+      if (!saved || typeof saved !== `object`) return;
+      if (typeof saved.selectedMonthIdx === `number` && saved.selectedMonthIdx >= 0 && saved.selectedMonthIdx < MONTHS_DATA.length) {
+        appState.selectedMonthIdx = saved.selectedMonthIdx;
+      }
+      if (saved.checklist && typeof saved.checklist === `object`) {
+        appState.checklist = {
+          trash: Boolean(saved.checklist.trash),
+          fire: Boolean(saved.checklist.fire),
+          trail: Boolean(saved.checklist.trail),
+          service: Boolean(saved.checklist.service)
+        };
+      }
+      if (typeof saved.sloganFilter === `string`) {
+        appState.sloganFilter = saved.sloganFilter;
+      }
+      if (typeof saved.selectedSloganId === `number`) {
+        appState.selectedSloganId = saved.selectedSloganId;
+      }
+      if (typeof saved.selectedPosterPhoto === `number`) {
+        appState.selectedPosterPhoto = saved.selectedPosterPhoto;
+      }
+      if (Array.isArray(saved.favoriteSlogans)) {
+        appState.favoriteSlogans = saved.favoriteSlogans.filter((n) => typeof n === `number`);
+      }
+    }
+
+    async function initApp() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === `function`) {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved) {
+            restoreSavedState(saved);
+          }
+        } catch (err) {
+          // Proceed with default state if host state unavailable
+        }
+      }
+
+      renderSeasonCells();
+      updateSeasonDetail();
+      renderChecklistUI();
+
+      const filterButtons = document.querySelectorAll(`.filter-btn`);
+      filterButtons.forEach((b) => {
+        if (b.dataset.filter === appState.sloganFilter) b.classList.add(`is-active`);
+        else b.classList.remove(`is-active`);
+      });
+
+      const photoButtons = document.querySelectorAll(`.photo-thumb-btn`);
+      photoButtons.forEach((b) => {
+        if (Number(b.dataset.photo) === appState.selectedPosterPhoto) b.classList.add(`is-active`);
+        else b.classList.remove(`is-active`);
+      });
+
+      renderSlogans();
+      updatePosterPreview();
+      setupRevealObserver();
+
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === `function`) {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener(`DOMContentLoaded`, initApp);
+  </script>
+</body>
+</html>
